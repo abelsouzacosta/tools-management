@@ -35,5 +35,8 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
+  },
+  "scripts": {
+    "dev": "tsnd --inspect --transpile-only --ignore-watch node_modules --respawn -r tsconfig-paths/register src/server.ts"
   }
 }
