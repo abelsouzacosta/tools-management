@@ -14,7 +14,7 @@ class Tool {
   @Column()
   description: string;
 
-  @Column("string", { array: true })
+  @Column("text", { array: true })
   tags: string[];
 }
 
