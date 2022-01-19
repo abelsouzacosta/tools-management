@@ -1,5 +1,9 @@
 import "reflect-metadata";
+import { router } from "@routes/tools.routes";
 import express from "express";
+
+import "./database";
+import "./shared/container";
 
 const app = express();
 
@@ -10,5 +14,9 @@ app.get("/", (req, res) => {
     message: "Olá mundo",
   });
 });
+
+app.use(express.json());
+
+app.use("/tools", router);
 
 app.listen(PORT, () => console.log(`Server listening on port ${PORT}`));

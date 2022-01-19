@@ -30,7 +30,7 @@ class ToolRepository implements IToolRepository {
     await this.repository.save(tool);
   }
 
-  async findByTitle(title: string): Promise<Tool> {
+  async findByTitle(title: string): Promise<Tool | undefined> {
     const tool = this.repository.findOne({
       where: {
         title,
@@ -40,7 +40,7 @@ class ToolRepository implements IToolRepository {
     return tool;
   }
 
-  async findById(id: number): Promise<Tool> {
+  async findById(id: number): Promise<Tool | undefined> {
     const tool = this.repository.findOne({
       where: {
         id,
