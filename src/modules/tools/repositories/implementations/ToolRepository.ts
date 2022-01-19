@@ -67,6 +67,8 @@ class ToolRepository implements IToolRepository {
     tool.link = link;
     tool.description = description;
     tool.tags = tags;
+
+    this.repository.save(tool);
   }
 
   async delete(id: number): Promise<void> {
