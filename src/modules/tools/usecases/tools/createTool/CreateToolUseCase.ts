@@ -1,3 +1,4 @@
+import { ApplicationError } from "@errors/ApplicationError";
 import {
   IToolRepository,
   ICreateToolDTO,
@@ -23,7 +24,8 @@ class CreateToolUseCase {
   }: ICreateToolDTO): Promise<void> {
     const toolAlreadyExists = await this.repository.findByTitle(title);
 
-    if (toolAlreadyExists) throw new Error("Title already taken");
+    if (toolAlreadyExists)
+      throw new ApplicationError("Title already taken", 400);
 
     this.repository.create({ title, link, description, tags });
   }

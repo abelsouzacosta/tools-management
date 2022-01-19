@@ -1,9 +1,11 @@
 import "reflect-metadata";
+import errorHandler from "@middlewares/MiddlewareError";
 import { router } from "@routes/tools.routes";
 import express from "express";
+import "express-async-errors";
 
 import "./database";
-import "./shared/container";
+import "@container/index";
 
 const app = express();
 
@@ -18,5 +20,7 @@ app.get("/", (req, res) => {
 app.use(express.json());
 
 app.use("/tools", router);
+
+app.use(errorHandler);
 
 app.listen(PORT, () => console.log(`Server listening on port ${PORT}`));
