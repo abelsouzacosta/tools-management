@@ -16,7 +16,7 @@ interface IUpdateToolDTO {
 }
 
 interface IToolRepository {
-  findByName(name: string): Promise<Tool | undefined>;
+  findByTitle(title: string): Promise<Tool | undefined>;
 
   findById(id: number): Promise<Tool | undefined>;
 
