@@ -1,0 +1,249 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Tool Management Documentation",
+    "description": "This is an Tool manager API",
+    "version": "1.0.0",
+    "contact": {
+      "email": "abelsouzacosta@gmail.com"
+    }
+  },
+  "paths": {
+    "/tools": {
+      "post": {
+        "tags": ["Tools"],
+        "summary": "Create a new Tool",
+        "description": "Inserts a new instance in the database",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "type": "string"
+                  },
+                  "link": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "tags": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "title": "Notion",
+                  "link": "https://notion.so",
+                  "description": "All in one tool to organize teams and ideas. Write, plan, collaborate, and get organized.",
+                  "tags": ["organization", "planning", "colaboration", "writing", "calendar"]
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Title already taken"
+          }
+        }
+      },
+      "get": {
+        "tags": ["Tools"],
+        "summary": "List all Tools",
+        "description": "Gets all tools in the database",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "title": {
+                        "type": "string"
+                      },
+                      "link": {
+                        "type": "string"
+                      },
+                      "description": {
+                        "type": "string"
+                      },
+                      "tags": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "example": {
+                      "id": 5,
+                      "title": "hotel",
+                      "link": "https://github.com/typicode/hotel",
+                      "description": "Local app manager. Start apps within your browser, developer tool with local .localhost domain and https out of the box.",
+                      "tags": "{\"node\",\"organizing\",\"webapps\",\"domain\",\"developer\",\"https\",\"proxy\"}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tools/{tool_id}": {
+      "put": {
+        "tags": ["Tools"],
+        "summary": "Updates an instance of tool",
+        "description": "Updates the instance of tool with the given id",
+        "parameters": [
+          {
+            "name": "tool_id",
+            "in": "path",
+            "description": "The id of an tool",
+            "required": true,
+            "type": "integer",
+            "minimum": 1
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "type": "string"
+                  },
+                  "link": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "tags": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "title": "fastify",
+                  "link": "https://www.fastify.io/",
+                  "description": "Extremely fast and simple, low-overhead web framework for NodeJS. Supports HTTP2.",
+                  "tags": "{\"web\",\"framework\",\"node\",\"http2\",\"https\",\"localhost\"}"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "403": {
+            "description": "Title already taken"
+          },
+          "404": {
+            "description": "Tool not found"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Tools"],
+        "summary": "Deletes an tool",
+        "description": "Deletes the tool with the given id",
+        "parameters": [
+          {
+            "name": "tool_id",
+            "in": "path",
+            "description": "The id of an tool",
+            "required": true,
+            "type": "integer",
+            "minimum": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Tool not found"
+          }
+        }
+      }
+    },
+    "/tools?tag={tag}": {
+      "get": {
+        "tags": ["Tools"],
+        "summary": "List all Tools",
+        "description": "Gets tools based in the tag set in the path",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "tag",
+            "in": "path",
+            "description": "A tag name in the tool's tag array",
+            "required": true,
+            "type": "string",
+            "example": "node"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "title": {
+                        "type": "string"
+                      },
+                      "link": {
+                        "type": "string"
+                      },
+                      "description": {
+                        "type": "string"
+                      },
+                      "tags": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "example": {
+                      "id": 4,
+                      "title": "json-server",
+                      "link": "https://github.com/typicode/json-server",
+                      "description": "Fake REST API based on a json schema. Useful for mocking and creating APIs for front-end devs to consume in coding challenges.",
+                      "tags": "{\"api\",\"json\",\"schema\",\"node\",\"github\",\"rest\"}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
