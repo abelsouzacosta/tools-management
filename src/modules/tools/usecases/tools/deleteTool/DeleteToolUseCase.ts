@@ -16,7 +16,7 @@ class DeleteToolUseCase {
   async execute(id: number): Promise<void> {
     const tool = await this.repository.findById(id);
 
-    if (!tool) throw new ApplicationError("Tool not found", 403);
+    if (!tool) throw new ApplicationError("Tool not found", 404);
 
     this.repository.delete(id);
   }
