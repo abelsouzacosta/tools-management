@@ -23,4 +23,10 @@
 
 6. Inicie a aplicação com o comando: `docker-compose up -d`
 
->> Você pode verificar os logs da aplicação com o comando `docker logs tool_management -f`
+> Você pode verificar os logs da aplicação com o comando `docker logs tool_management -f`
+
+### Documentação
+
+Os endpoints da aplicação estão documentados na rota que pode ser encontrada em **http://localhost:3333/api-docs**, e o ambiente dos endpoints pode ser obtido abaixo:
+
+[![Run in Insomnia}](https://insomnia.rest/images/run.svg)](https://insomnia.rest/run/?label=Tool%20Management&uri=https%3A%2F%2Fraw.githubusercontent.com%2Fabelsouzacosta%2Flibrary-content%2Fmaster%2Funid.json%3Ftoken%3DGHSAT0AAAAAABPOCJRWQY4VQ4XJANG5365EYPIYQMA)
